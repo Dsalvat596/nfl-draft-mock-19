@@ -9,12 +9,12 @@ const express = require('express'),
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost:27017/NflDraft19', { useNewUrlParser: true}).then(
       ()=> {console.log('Database is connected')},
-      err=> {console.log('can not connect to the database')}  
+      err=> {console.log('can not connect to the database' + err)}  
     );
 
     const app = express();
     app.use(bodyParser.json());
-    app.use(cors);
+    app.use(cors());
     app.use('/prospects', prospectRoute);
     let port = 4000;
 
