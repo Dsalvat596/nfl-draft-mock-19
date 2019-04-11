@@ -1,3 +1,27 @@
-<p>
-  draft-home works!
-</p>
+<nav class="navbar navbar-expand-sm bg-success">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="/" class="nav-link" routerLinkActive="active">
+          Draft Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="" class="nav-link" routerLinkActive="active">
+          Other
+        </a>
+      </li> 
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <app-team-area></app-team-area>
+    </div>
+    <div class="col-sm-8">
+      <app-prospect-area></app-prospect-area>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ const express = require('express'),
     mongoose = require('mongoose');
 
     const prospectRoute = require('./routes/prospect.route');
+    const teamRoute = require('./routes/team.route');
 
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost:27017/NflDraft19', { useNewUrlParser: true}).then(
@@ -16,6 +17,7 @@ const express = require('express'),
     app.use(bodyParser.json());
     app.use(cors());
     app.use('/prospects', prospectRoute);
+    app.use('/teams', teamRoute);
     let port = 4000;
 
     const server = app.listen(port, function(){
