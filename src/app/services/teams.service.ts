@@ -28,6 +28,7 @@ export class TeamsService {
      this.http.get(`${this.uri}`).subscribe((teams: Team[]) => {
       this.allTeams = teams.map(function(obj) {
         obj.draft_picks = obj.draft_picks.split(",");
+        obj.drafted_prospects = [];
         return obj;
       });
       console.log(this.allTeams);

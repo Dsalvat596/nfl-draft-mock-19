@@ -1,6 +1,10 @@
-<div class="container">
-  <h3>{{currentTeam?.city}} {{currentTeam?.name}}
-  {{currentPick}}</h3>
-  
+<div class="card" style="width: 18rem;">
+  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+  <div class="card-body">
+    <h5 class="card-title">{{currentTeam?.city}} {{currentTeam?.name}}</h5>
+    <ul class="card-text drafted-prospects" *ngIf="currentTeam?.drafted_prospects.length>0">
+      <li *ngFor="let prospect of currentTeam.drafted_prospects">{{prospect.last_name}}</li>
+    </ul>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
 </div>
-<button (click)="pickMade()">Pick</button>

@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DraftHomeComponent } from './draft-home/draft-home.component';
@@ -10,6 +14,8 @@ import { ProspectsService } from './services/prospects.service';
 import { TeamAreaComponent } from './teams/team-area/team-area.component';
 import { TeamCardComponent } from './teams/team-card/team-card.component';
 import { ProspectAreaComponent } from './prospects/prospect-area/prospect-area.component';
+import { TeamsService } from './services/teams.service';
+
 
 @NgModule({
   declarations: [
@@ -17,14 +23,18 @@ import { ProspectAreaComponent } from './prospects/prospect-area/prospect-area.c
     DraftHomeComponent,
     TeamAreaComponent,
     TeamCardComponent,
-    ProspectAreaComponent
+    ProspectAreaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule
   ],
-  providers: [ProspectsService],
+  providers: [ProspectsService, TeamsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
