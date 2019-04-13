@@ -28,68 +28,69 @@
     </tr>
   </tbody>
   </table> -->
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
     <!-- Ovr Rank-->
     <ng-container matColumnDef="ovr_rank">
-      <th mat-header-cell *matHeaderCellDef> Ovr </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ovr </th>
       <td mat-cell *matCellDef="let element"> {{element.ovr_rank}} </td>
     </ng-container>
   
     <!-- Last Name Column -->
     <ng-container matColumnDef="last_name">
-      <th mat-header-cell *matHeaderCellDef> Last </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last </th>
       <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
     </ng-container>
   
     <!-- First Name Column -->
     <ng-container matColumnDef="first_name">
-      <th mat-header-cell *matHeaderCellDef> First </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> First </th>
       <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
     </ng-container>
   
     <!-- Position Column -->
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> Pos </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pos </th>
       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
     </ng-container>
 
     <!-- Pos Rank Column -->
     <ng-container matColumnDef="pos_rank">
-      <th mat-header-cell *matHeaderCellDef> P Rank </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> P Rank </th>
       <td mat-cell *matCellDef="let element"> {{element.pos_rank}} </td>
     </ng-container>
 
     <!-- School Column -->
     <ng-container matColumnDef="school">
-      <th mat-header-cell *matHeaderCellDef> School </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> School </th>
       <td mat-cell *matCellDef="let element"> {{element.school}} </td>
     </ng-container>
 
     <!-- Year Column -->
     <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef> Yr </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Yr </th>
       <td mat-cell *matCellDef="let element"> {{element.year}} </td>
     </ng-container>
 
      <!-- height Column -->
      <ng-container matColumnDef="height">
-      <th mat-header-cell *matHeaderCellDef> Ht </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ht </th>
       <td mat-cell *matCellDef="let element"> {{element.height}} </td>
     </ng-container>
 
      <!-- weight Column -->
      <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Wt </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Wt </th>
       <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+  <mat-paginator [pageSize] ="10" [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+</div>
   
