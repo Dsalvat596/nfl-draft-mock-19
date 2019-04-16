@@ -6,6 +6,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 import { AppComponent } from './app.component';
 import { DraftHomeComponent } from './draft-home/draft-home.component';
@@ -32,7 +35,9 @@ import { TeamsService } from './services/teams.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [ProspectsService, TeamsService],
   bootstrap: [AppComponent]

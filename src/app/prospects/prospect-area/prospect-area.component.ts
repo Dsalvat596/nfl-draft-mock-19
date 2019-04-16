@@ -31,12 +31,20 @@ export class ProspectAreaComponent implements OnInit {
       this.dataSource = new MatTableDataSource(datatemp); 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource[3]);
+      // console.log(this.dataSource);
     })
     this.ts.currentTeamUpdated.subscribe((team:Team)=>{
       this.currentTeam = team;
-      console.log(this.currentTeam);
+      // console.log(this.currentTeam);
     })
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getProspect(prospect: Prospect){
+    console.log(prospect);
   }
 
 }
