@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Team } from '../models/team';
+import { Prospect } from '../models/prospect';
+import { ProspectsService } from './prospects.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class TeamsService {
   private currentPickSubject: Subject<number>;
   nextTeam: Team;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private ps: ProspectsService) { 
     this.currentTeamSubject = new Subject<Team>();
     this.currentTeamUpdated = this.currentTeamSubject.asObservable();
     this.currentPickSubject = new Subject<number>();
@@ -31,10 +33,10 @@ export class TeamsService {
         obj.drafted_prospects = [];
         return obj;
       });
-      console.log(this.allTeams);
+      // console.log(this.allTeams);
       this.currentPick = 1;
       this.currentTeam = this._findNextTeam(this.currentPick);
-      console.log(this.currentTeam);
+      // console.log(this.currentTeam);
       this.currentTeamSubject.next(this.currentTeam);
       this.currentPickSubject.next(this.currentPick);
     });
@@ -51,6 +53,11 @@ export class TeamsService {
       };
     };
   };
+
+  draftPlayerToTeam(prospect: Prospect, team: Team){
+    
+    this.pickMade();
+  }
 
   pickMade(){
     this.currentPick++

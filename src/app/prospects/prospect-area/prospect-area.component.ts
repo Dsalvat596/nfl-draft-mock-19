@@ -6,6 +6,8 @@ import { TeamsService } from 'src/app/services/teams.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material';
+import { ProspectDraftConfirmComponent } from '../prospect-draft-confirm/prospect-draft-confirm.component';
 
 @Component({
   selector: 'app-prospect-area',
@@ -18,7 +20,7 @@ export class ProspectAreaComponent implements OnInit {
   dataSource: MatTableDataSource<Prospect>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private ps: ProspectsService, private ts: TeamsService) { }
+  constructor(private ps: ProspectsService, private ts: TeamsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.ps.getProspects();
@@ -44,7 +46,11 @@ export class ProspectAreaComponent implements OnInit {
   }
 
   getProspect(prospect: Prospect){
-    console.log(prospect);
+    // console.log(prospect);
+    this.dialog.open(ProspectDraftConfirmComponent, {
+      data: prospect
+    });
+    
   }
 
 }
