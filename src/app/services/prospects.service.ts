@@ -9,7 +9,7 @@ import { Prospect } from '../models/prospect';
 export class ProspectsService {
   uri = 'http://localhost:4000/prospects';
   availableProspects: Prospect[];
-  draftedProspects: Prospect[];
+  draftedProspects: Prospect[] = [];
   public availableProspectsUpdated: Observable<Prospect[]>;
   private availableProspectsSubject: Subject<Prospect[]>;
   public draftedProspectsUpdated: Observable<Prospect[]>;
@@ -26,5 +26,23 @@ export class ProspectsService {
       this.availableProspects = res;
       this.availableProspectsSubject.next(this.availableProspects);
     })
+  }
+
+  draftProspect(prospectId){
+    let index = this._findProspectIndexById(prospectId);
+    let drafted = this.availableProspects[index];
+    drafted.drafted = true;
+    this.availableProspects.splice(index, 1);
+    this.draftedProspects.push(drafted);
+    this.availableProspectsSubject.next(this.availableProspects);
+    // this.draftedProspectsSubject.next(this.draftedProspects);
+  }
+
+  _findProspectIndexById(id){
+    for(let i=0; i<this.availableProspects.length; i++){
+      if (this.availableProspects[i]._id === id){
+        return i;
+      }
+    }
   }
 }

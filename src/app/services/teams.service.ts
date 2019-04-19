@@ -54,8 +54,10 @@ export class TeamsService {
     };
   };
 
-  draftPlayerToTeam(prospect: Prospect, team: Team){
-    
+  draftPlayerToTeam(prospect: Prospect){
+    this.currentTeam.drafted_prospects.push(prospect);
+    console.log(this.currentTeam.name, this.currentTeam.drafted_prospects);
+    this.ps.draftProspect(prospect._id);
     this.pickMade();
   }
 

@@ -22,7 +22,7 @@ export class ProspectDraftConfirmComponent implements OnInit {
   }
 
   draftPlayer(){
-    this.ts.draftPlayerToTeam(this.thisProspect, this.currentTeam);
+    this.ts.draftPlayerToTeam(this.thisProspect);
     this.dialogRef.close();
   }
 
