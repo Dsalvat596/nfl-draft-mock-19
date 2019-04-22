@@ -1,10 +1,13 @@
-<div class="card" style="width: 18rem;">
-  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-  <div class="card-body">
-    <h5 class="card-title">{{currentTeam?.city}} {{currentTeam?.name}}</h5>
-    <ul class="card-text drafted-prospects" *ngIf="currentTeam?.drafted_prospects.length>0">
-      <li *ngFor="let prospect of currentTeam.drafted_prospects">{{prospect.last_name}}</li>
-    </ul>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-  </div>
-</div>
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"><img src="src/assets/img/nfl_logos/{{currentTeam?.name}}.png"></div>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Pick {{currentPick}}</p>
+        <h5>On the Clock: {{currentTeam?.city}} {{currentTeam?.name}}</h5>
+        <div class="card-text drafted-prospects" *ngIf="currentTeam?.drafted_prospects.length>0">
+          <p>Players Drafted:</p>
+            <p *ngFor="let prospect of currentTeam.drafted_prospects">{{prospect.drafted}}: {{prospect.last_name}}, {{prospect.first_name}} {{prospect.position}}</p>
+          </div>
+    </mat-card-content>
+  </mat-card>

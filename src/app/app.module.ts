@@ -9,7 +9,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { DraftHomeComponent } from './draft-home/draft-home.component';
@@ -20,6 +21,7 @@ import { TeamCardComponent } from './teams/team-card/team-card.component';
 import { ProspectAreaComponent } from './prospects/prospect-area/prospect-area.component';
 import { TeamsService } from './services/teams.service';
 import { ProspectDraftConfirmComponent } from './prospects/prospect-draft-confirm/prospect-draft-confirm.component';
+import { DraftResultsComponent } from './draft-results/draft-results.component';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { ProspectDraftConfirmComponent } from './prospects/prospect-draft-confir
     TeamCardComponent,
     ProspectAreaComponent,
     ProspectDraftConfirmComponent,
+    DraftResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,9 +44,10 @@ import { ProspectDraftConfirmComponent } from './prospects/prospect-draft-confir
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatToolbarModule
   ],
-  providers: [ProspectsService, TeamsService],
   entryComponents: [ProspectDraftConfirmComponent],
   bootstrap: [AppComponent]
 })

@@ -16,7 +16,8 @@ export class TeamAreaComponent implements OnInit {
   constructor(private ts: TeamsService) {}
 
   ngOnInit() {
-    this.ts.getTeams()
+    this.currentTeam = this.ts.currentTeam;
+    this.currentPick = this.ts.currentPick;
     this.ts.currentTeamUpdated.subscribe((data)=>{
       this.currentTeam = data;
     });

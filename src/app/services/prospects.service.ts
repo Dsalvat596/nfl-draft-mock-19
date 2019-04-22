@@ -19,6 +19,7 @@ export class ProspectsService {
     this.availableProspectsUpdated = this.availableProspectsSubject.asObservable();
     this.draftedProspectsSubject = new Subject<Prospect[]>();
     this.draftedProspectsUpdated = this.draftedProspectsSubject.asObservable();
+    this.getProspects();
   }
 
   getProspects(){
@@ -28,10 +29,10 @@ export class ProspectsService {
     })
   }
 
-  draftProspect(prospectId){
+  draftProspect(prospectId, pick){
     let index = this._findProspectIndexById(prospectId);
     let drafted = this.availableProspects[index];
-    drafted.drafted = true;
+    drafted.drafted = pick;
     this.availableProspects.splice(index, 1);
     this.draftedProspects.push(drafted);
     this.availableProspectsSubject.next(this.availableProspects);

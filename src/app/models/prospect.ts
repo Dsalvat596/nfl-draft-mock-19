@@ -9,5 +9,5 @@ export class Prospect {
     year: String;
     weight: Number;
     height: String;
-    drafted?: Boolean
+    drafted?: Number;
 }

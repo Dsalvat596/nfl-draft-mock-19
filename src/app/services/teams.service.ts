@@ -6,10 +6,10 @@ import { Prospect } from '../models/prospect';
 import { ProspectsService } from './prospects.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class TeamsService {
-  uri = 'http://localhost:4000/teams';
+  uri = "http://localhost:4000/teams";
   allTeams: Team[];
   currentPick: number;
   currentTeam: Team;
@@ -19,51 +19,47 @@ export class TeamsService {
   private currentPickSubject: Subject<number>;
   nextTeam: Team;
 
-  constructor(private http: HttpClient, private ps: ProspectsService) { 
+  constructor(private http: HttpClient, private ps: ProspectsService) {
     this.currentTeamSubject = new Subject<Team>();
     this.currentTeamUpdated = this.currentTeamSubject.asObservable();
     this.currentPickSubject = new Subject<number>();
     this.currentPickUpdated = this.currentPickSubject.asObservable();
+    this.getTeams();
   }
 
-  getTeams(){
-     this.http.get(`${this.uri}`).subscribe((teams: Team[]) => {
+  getTeams() {
+    this.http.get(`${this.uri}`).subscribe((teams: Team[]) => {
       this.allTeams = teams.map(function(obj) {
         obj.draft_picks = obj.draft_picks.split(",");
         obj.drafted_prospects = [];
         return obj;
       });
-      // console.log(this.allTeams);
       this.currentPick = 1;
-      this.currentTeam = this._findNextTeam(this.currentPick);
-      // console.log(this.currentTeam);
+      this.currentTeam = this._findCurrentTeam(this.currentPick);
       this.currentTeamSubject.next(this.currentTeam);
       this.currentPickSubject.next(this.currentPick);
     });
   }
 
-  _findNextTeam(pick: number){
+  _findCurrentTeam(pick: number) {
     for (let i = 0; i < this.allTeams.length; i++) {
-      if (
-        this.allTeams[i].draft_picks.includes(pick.toString())
-      ) {
+      if (this.allTeams[i].draft_picks.includes(pick.toString())) {
         this.currentTeam = this.allTeams[i];
         return this.currentTeam;
-       
-      };
-    };
-  };
+      }
+    }
+  }
 
-  draftPlayerToTeam(prospect: Prospect){
+  draftPlayerToTeam(prospect: Prospect) {
     this.currentTeam.drafted_prospects.push(prospect);
-    console.log(this.currentTeam.name, this.currentTeam.drafted_prospects);
-    this.ps.draftProspect(prospect._id);
+    // console.log(this.currentTeam.name, this.currentTeam.drafted_prospects);
+    this.ps.draftProspect(prospect._id, this.currentPick);
     this.pickMade();
   }
 
-  pickMade(){
-    this.currentPick++
-    this.currentTeam = this._findNextTeam(this.currentPick)
+  pickMade() {
+    this.currentPick++;
+    this.currentTeam = this._findCurrentTeam(this.currentPick);
     this.currentPickSubject.next(this.currentPick);
     this.currentTeamSubject.next(this.currentTeam);
   }
